@@ -102,5 +102,12 @@ public class Application {
         car1.printBrand();
         new Car("BWM");  // Or also we can directly create a new instance without assignation nto a variable
 
+        // Another Java concept are abstract classes. They cannot be instantiated and work as blueprints for other
+        // child classes that inherit their methods (but we prevent creating objects of the base class)
+        // Machine machine = new Machine(); -> This wont work because Machine is abstract
+        Camera camera = new Camera();  // However, this works because is a non-abstract subclass
+        camera.setId(4);
+        // In the same way, we can create abstract methods to force overriding them before they are used (must)
+
     }
 }
