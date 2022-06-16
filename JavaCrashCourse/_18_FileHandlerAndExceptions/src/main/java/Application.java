@@ -6,6 +6,14 @@ import java.nio.file.FileAlreadyExistsException;
 import java.text.ParseException;
 import java.util.Scanner;
 
+class Temp implements AutoCloseable {
+    @Override
+    public void close() throws Exception {
+        System.out.println("Closing");
+        throw new Exception("Error");
+    }
+}
+
 public class Application {
 
     // Exceptions are a major part of Java and what give to a piece of code a distinctive quality. The idea is when an
@@ -44,6 +52,14 @@ public class Application {
             count++;
         }
         in2.close(); // We need to close the file always
+
+        // To avoid forgetting to close the file is good practice to use an object that implements AutoClose class
+        // The following signature is called try with resources, and handles error when creating instances
+        try(Temp temp = new Temp()) {
+            // Do something with the instance
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // A more powerful way of working with files is through FileReader objects
         filename2 = "text_sample23.txt";
@@ -84,6 +100,8 @@ public class Application {
         } catch (Exception e) {  // Or catch them from the parent generic Exception class
             System.out.println("Generic exception catching");
         }
+
+
 
     }
 
